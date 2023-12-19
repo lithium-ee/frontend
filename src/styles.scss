@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+@import './assets/style-variables.scss';
+
+body {
+    background-color: $bg;
+    font-family: 'Poppins';
+    font-weight: 400;
+}
+
+body, html {
+}
+
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+
+html {
+    color: $text;
+    font-size: 100%;} /* 16px */
+
+h1 {
+    color: $text;
+    font-size: 4.210rem; /* 67.36px */}
+
+h2 {
+    color: $text;
+    font-size: 3.158rem; /* 50.56px */}
+
+h3 {
+    color: $text;
+    font-size: 2.369rem; /* 37.92px */}
+
+h4 {
+    color: $text;
+    font-size: 1.777rem; /* 28.48px */}
+
+h5 {
+    color: $text;
+    font-size: 1.333rem; /* 21.28px */}
+
+p {
+    color: $text;
+    font-size: 0.750rem; /* 12px */}
+
+a {
+    color: inherit; // Inherit the color from the parent
+    text-decoration: none; // Remove the underline
+    background: none; // Remove the background
+    border: none; // Remove the border
+    padding: 0; // Remove the padding
+    font: inherit; // Inherit the font from the parent
+    outline: none; // Remove the outline
+
+    transition: color 0.2s ease-in-out;
+    
+    &:hover {
+        color: $secondary !important;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.369rem; // Adjust as needed
+    }
+
+    h2 {
+        font-size: 1.777rem; // Adjust as needed
+    }
+
+    h3 {
+        font-size: 1.333rem; // Adjust as needed
+    }
+}

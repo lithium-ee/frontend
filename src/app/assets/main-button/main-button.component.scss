@@ -1,0 +1,49 @@
+@import 'src/assets/style-variables.scss';
+
+
+button {
+
+    &.small {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    &.medium {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    &.large {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+    border-radius: 8px;
+    border: 1px solid $primary;
+
+    background-color: $bg;
+    box-shadow: 4px 4px 0px 0px $primary;
+
+    cursor: pointer;
+
+    color: $text;
+
+    &:hover {
+        // make it bounce
+        animation: bounce 0.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+
+        // define the bounce animation
+        @keyframes bounce {
+            0%, 100% {
+                box-shadow: 4px 4px 0px 0px $primary;
+            }
+            25%, 75% {
+                box-shadow: 6px 6px 0px 0px $primary; // Increase the shadow size
+            }
+            50% {
+                box-shadow: 2px 2px 0px 0px $primary; // Add a "dip" in the middle of the bounce
+            }
+        }
+    }
+}

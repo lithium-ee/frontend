@@ -1,0 +1,54 @@
+@import '../../../assets/style-variables.scss';
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    z-index: -1;
+
+    #colors-container {
+        margin-left: auto;
+        position: relative;
+        width: 50%;
+        max-height: 80%;
+        margin-top: 10%;        
+        .circle:nth-child(1){
+            filter: blur(5em);
+            position: absolute;
+            width: 30%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: $accent;
+            position: absolute;
+            left: 30%;
+            bottom: 50%;
+        }
+        .circle:nth-child(2){
+            filter: blur(5em);
+            position: absolute;
+            width: 30%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: $secondary;
+            position: absolute;
+            left: 40%;
+            bottom: 20%;
+        }
+        .circle:nth-child(3){
+            filter: blur(5em);
+            position: absolute;
+            width: 50%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: $primary;
+            position: absolute;
+            left: 0;
+            bottom: 20%;
+        }
+        
+    }
+}

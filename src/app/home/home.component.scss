@@ -1,0 +1,28 @@
+#container {
+    height: 100%;
+    width: 100%;
+    padding-top: 115px;
+    padding-left: 140px;
+    padding-right: 140px;
+
+    h1 {
+        max-width: 371px;
+    }
+    h5 {
+        max-width: 497px;
+    }
+
+    svg {
+        position: absolute;
+        bottom: 20px; /* Adjust as needed */
+        left: 50%;
+        transform: translateX(-50%); /* This centers the SVG */
+    }
+
+    // Styles for mobile devices
+    @media (max-width: 768px) {
+        padding-top: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

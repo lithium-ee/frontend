@@ -1,0 +1,30 @@
+@import '../home/home.component.scss';
+@import 'src/assets/style-variables.scss';
+
+#container {
+    @extend #container;
+
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        max-width: 1057px;
+    }
+
+    app-inputs {
+        width: 741px;
+    }
+
+
+    app-main-button {
+        width: 741px;
+    }
+
+    small {
+
+        margin-top: 12px;
+        a {
+            color: $accent;
+        }
+    }
+}
