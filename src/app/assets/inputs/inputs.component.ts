@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InputsObject } from '../interfaces/inputs-object.interface';
 import {
     FormControl,
@@ -13,7 +13,7 @@ export class AppModule {}
     templateUrl: './inputs.component.html',
     styleUrls: ['./inputs.component.scss'],
 })
-export class InputsComponent {
+export class InputsComponent implements OnInit {
     @Input() inputsList: InputsObject[] = [];
 
     showPassword: { [key: number]: boolean } = {};
