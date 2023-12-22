@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { InputsObject } from '../assets/interfaces/inputs-object.interface';
+import { InputsComponent } from '../assets/inputs/inputs.component';
+import { ApiService } from '../services/api.service';
+import { SignUpDto } from '../services/dto/sign-up.dto';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-sign-up',
@@ -7,6 +11,13 @@ import { InputsObject } from '../assets/interfaces/inputs-object.interface';
     styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
+    constructor(
+        private readonly apiService: ApiService,
+        private readonly appService: AppService
+    ) {}
+
+    public errorMessage: string = '';
+
     inputsList: InputsObject[] = [
         {
             name: 'email',
@@ -52,4 +63,22 @@ export class SignUpComponent {
             },
         },
     ];
+
+    onSubmit(values: { [key: string]: string }) {
+        this.apiService
+            .signUp({
+                email: values['email'],
+                username: values['username'],
+                password: values['password1'],
+            })
+            .subscribe({
+                next: response => {
+                    this.errorMessage = '';
+                    this.appService.setAuthToken(response.access_token);
+                },
+                error: err => {
+                    this.errorMessage = err.error.message;
+                },
+            });
+    }
 }

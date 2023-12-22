@@ -1,4 +1,4 @@
-<form id="container" [formGroup]="formGroup">
+<form id="container" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <div *ngFor="let input of inputsList; let i = index">
         <div class="input-container">
 
@@ -18,7 +18,7 @@
         </div>
             
         <div id="error-container">
-            <div *ngIf="formGroup.controls[input.name].errors && (formGroup.controls[input.name] && formGroup.controls[input.name].touched || input.requirements.hasToMatch)">
+            <div *ngIf="formGroup.controls[input.name].errors && (submitted || formGroup.controls[input.name] && formGroup.controls[input.name].touched || input.requirements.hasToMatch)">
                 <small class="text-danger" *ngIf="formGroup.controls[input.name].errors!['hasToMatch']">
                     Passwords do not match.
                 </small>
@@ -37,4 +37,6 @@
             </div>
         </div>
     </div>
+    <small>{{apiErrorMessage}}</small>
+    <app-main-button [text]="'sign in'" [size]="'large'" type="submit"></app-main-button>
 </form>

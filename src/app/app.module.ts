@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { GlowComponent } from './assets/glow/glow.component';
 import { HeaderComponent } from './header/header.component';
 import { MainButtonComponent } from './assets/main-button/main-button.component';
@@ -11,11 +11,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { InputsComponent } from './assets/inputs/inputs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
+        LandingPageComponent,
         GlowComponent,
         HeaderComponent,
         MainButtonComponent,
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InputsObject } from '../interfaces/inputs-object.interface';
 import {
     FormControl,
@@ -15,8 +15,18 @@ export class AppModule {}
 })
 export class InputsComponent implements OnInit {
     @Input() inputsList: InputsObject[] = [];
+    @Input() apiErrorMessage: string = '';
+    @Output() formSubmit = new EventEmitter<any>();
 
     showPassword: { [key: number]: boolean } = {};
+
+    onSubmit(): void {
+        this.submitted = true;
+        if (this.formGroup.invalid) {
+            return;
+        }
+        this.formSubmit.emit(this.formGroup.value);
+    }
 
     toggleShowPassword(index: number) {
         this.showPassword[index] = !this.showPassword[index];
@@ -24,10 +34,11 @@ export class InputsComponent implements OnInit {
     }
 
     formGroup!: FormGroup;
+    submitted: boolean = false;
 
     ngOnInit() {
         const group: { [key: string]: FormControl } = {};
-        this.inputsList.forEach((input) => {
+        this.inputsList.forEach(input => {
             let validators: ValidatorFn[] = [];
 
             if (input.requirements?.hasToMatch || input.type === 'email') {
@@ -35,7 +46,12 @@ export class InputsComponent implements OnInit {
                     // Add your custom validator for hasToMatch here
                 }
                 if (input.type === 'email') {
-                    validators.push(Validators.email);
+                    validators = [
+                        Validators.email,
+                        ...(input.requirements?.required
+                            ? [Validators.required]
+                            : []),
+                    ];
                 }
             } else {
                 validators = [
@@ -55,7 +71,7 @@ export class InputsComponent implements OnInit {
         });
         this.formGroup = new FormGroup(group);
 
-        this.inputsList.forEach((input) => {
+        this.inputsList.forEach(input => {
             if (input.requirements?.hasToMatch) {
                 const hasToMatch = input.requirements.hasToMatch;
                 const control = this.formGroup.controls[input.name];

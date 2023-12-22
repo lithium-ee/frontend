@@ -1,4 +1,4 @@
-@import '../home/home.component.scss';
+@import '../landing-page/landing-page.component.scss';
 @import 'src/assets/style-variables.scss';
 
 #container {
@@ -15,9 +15,8 @@
         width: 741px;
     }
 
-
     app-main-button {
-        width: 741px;
+        width: max-content;
     }
 
     small {

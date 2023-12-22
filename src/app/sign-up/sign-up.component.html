@@ -1,6 +1,5 @@
 <div id="container">
     <h1>Create your Lithium account.</h1>
-    <app-inputs [inputsList]="inputsList"></app-inputs>
-    <app-main-button [size]="'large'" [text]="'Sign up'"></app-main-button>
+    <app-inputs (formSubmit)="onSubmit($event)" [apiErrorMessage]="errorMessage" [inputsList]="inputsList"></app-inputs>
     <small>Already have an account? <a routerLink="/sign-in">Log in!</a></small>
 </div>
