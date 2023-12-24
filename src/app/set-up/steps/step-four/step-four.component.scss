@@ -1,0 +1,25 @@
+@import '../../set-up.component.scss';
+@import 'src/assets/style-variables.scss';
+
+#container {
+    @extend #container;
+    input[type="time"] {
+        width: 100%;
+        max-width: 300px;
+        padding: 10px;
+        border: 1px solid #000000;
+        color: $bg;
+        background-color: $secondary;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        box-shadow: 4px 4px 2px $secondary; // Add this line
+
+        &:focus {
+            outline: 1px solid $primary !important; // Modify this line
+        }
+
+    }
+    
+}

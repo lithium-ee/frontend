@@ -1,0 +1,8 @@
+@import '../../landing-page/landing-page.component.scss';
+
+#container {
+    @extend #container;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

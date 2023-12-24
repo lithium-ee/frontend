@@ -9,19 +9,12 @@ body {
     font-weight: 400;
 }
 
-body, html {
-}
-
-
-
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-weight: 400;
 }
-
 
 html {
     color: $text;
@@ -79,4 +72,8 @@ a {
     h3 {
         font-size: 1.333rem; // Adjust as needed
     }
+}
+
+app-main-button, app-secondary-button {
+    width: max-content;
 }

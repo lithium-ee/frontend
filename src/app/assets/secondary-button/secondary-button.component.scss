@@ -1,0 +1,45 @@
+@import 'src/assets/style-variables.scss';
+
+
+button {
+    width: fit-content;
+
+    &.small {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    &.medium {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    &.large {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+
+    &.xl {
+        font-size: 24px;
+        padding: 20px 40px;
+        min-width: 342px;
+    }
+    
+    border-radius: 8px;
+    border: 1px dashed $secondary;
+
+    background-color: $bg;
+
+
+    cursor: pointer;
+
+    color: $text;
+
+    &:hover {
+
+        background-color: $secondary;
+        color: black;
+        // animatte bg
+        transition-duration: 0.5s;
+    }
+}

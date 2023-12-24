@@ -1,0 +1,55 @@
+@import '../../set-up.component.scss';
+@import 'src/assets/style-variables.scss';
+
+#container {
+    @extend #container;
+
+    #contents {
+        gap: 10px;
+        height: 80%;
+
+        #optional-text {
+            padding: 9px 24px;
+            border-radius: 4px;
+            border: 1px dashed $accent;
+            width: fit-content;
+        }
+        p {
+            margin-left: 10px;
+        }
+
+        #device-container {
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            width: 100%;
+            max-width: 650px;
+            height: 200px;
+            border: 1px solid $accent;
+            border-radius: 4px;
+
+            .device {
+                width: 100%;
+                // center text vertically
+                align-items: center;
+                justify-content: center;
+                border: 1px dashed $primary;
+                border-radius: 4px;
+                cursor: pointer;
+                padding: 4px;
+                // animate bg
+                transition: background-color 0.2s ease-in-out;
+            }
+
+            .selected {
+                background-color: $primary;
+            }
+        }
+        small {
+            opacity: 0.7;
+        }
+    }
+    
+}

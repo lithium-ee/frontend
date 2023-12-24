@@ -18,10 +18,18 @@ button {
         font-size: 20px;
         padding: 15px 30px;
     }
-    border-radius: 8px;
-    border: 1px solid $primary;
 
-    background-color: $bg;
+    &.xl {
+        font-size: 24px;
+        padding: 20px 40px;
+        min-width: 342px;
+    }
+    
+    border-radius: 8px;
+    border: 1px solid $bg;
+
+    background-color: $primary;
+
     box-shadow: 4px 4px 0px 0px $primary;
 
     cursor: pointer;
@@ -40,7 +48,7 @@ button {
                 box-shadow: 4px 4px 0px 0px $primary;
             }
             25%, 75% {
-                box-shadow: 6px 6px 0px 0px $primary; // Increase the shadow size
+                box-shadow: 8px 8px 0px 0px $primary; // Increase the shadow size
             }
             50% {
                 box-shadow: 2px 2px 0px 0px $primary; // Add a "dip" in the middle of the bounce

@@ -1,6 +1,6 @@
 <div id="container">
     <h1>Sign in using your lithium account.</h1>
-    <app-inputs [apiErrorMessage]="errorMessage" (formSubmit)="onSubmit($event)" [inputsList]="inputsList"></app-inputs>
+    <app-inputs [apiErrorMessage]="errorMessage" (formSubmit)="onSubmit($event)" [inputsList]="inputsList" [buttonMessage]="'Sign in'"></app-inputs>
     <small><a routerLink="/sign-in">Forgot your credentias?</a></small>
     <small>Don't have an account? <a routerLink="/sign-in">Register here</a></small>
 </div>

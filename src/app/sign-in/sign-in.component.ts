@@ -4,6 +4,7 @@ import { InputsComponent } from '../assets/inputs/inputs.component';
 import { ApiService } from '../services/api.service';
 import { SignInDto } from '../services/dto/sign-in.dto';
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sign-in',
@@ -13,7 +14,8 @@ import { AppService } from '../app.service';
 export class SignInComponent {
     constructor(
         private apiService: ApiService,
-        private readonly appService: AppService
+        private readonly appService: AppService,
+        private router: Router
     ) {}
 
     inputsList: InputsObject[] = [
@@ -42,11 +44,12 @@ export class SignInComponent {
     @ViewChild(InputsComponent) inputsComponent!: InputsComponent;
     public errorMessage: string = '';
     onSubmit(values: SignInDto) {
-        console.log(values);
         this.apiService.signIn(values).subscribe({
             next: response => {
                 this.errorMessage = '';
                 this.appService.setAuthToken(response.access_token);
+                // navigate to home page
+                this.router.navigate(['home']);
             },
             error: err => {
                 this.errorMessage = err.error.message;

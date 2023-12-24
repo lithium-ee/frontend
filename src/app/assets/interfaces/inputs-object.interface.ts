@@ -1,6 +1,7 @@
 export interface InputsObject {
     name: string;
     type: 'text' | 'password' | 'email' | 'number';
+    value?: string;
     placeholder: string;
     requirements: Requirements;
 }

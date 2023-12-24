@@ -16,6 +16,8 @@ export class AppModule {}
 export class InputsComponent implements OnInit {
     @Input() inputsList: InputsObject[] = [];
     @Input() apiErrorMessage: string = '';
+    @Input() buttonMessage: string = '';
+    @Input() buttonSize: 'small' | 'medium' | 'large' | 'xl' = 'large';
     @Output() formSubmit = new EventEmitter<any>();
 
     showPassword: { [key: number]: boolean } = {};
@@ -30,7 +32,6 @@ export class InputsComponent implements OnInit {
 
     toggleShowPassword(index: number) {
         this.showPassword[index] = !this.showPassword[index];
-        console.log(this.showPassword);
     }
 
     formGroup!: FormGroup;
@@ -67,7 +68,7 @@ export class InputsComponent implements OnInit {
                 ];
             }
 
-            group[input.name] = new FormControl('', validators);
+            group[input.name] = new FormControl(input.value || '', validators);
         });
         this.formGroup = new FormGroup(group);
 

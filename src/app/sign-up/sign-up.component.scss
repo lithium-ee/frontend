@@ -11,19 +11,17 @@
         max-width: 1057px;
     }
 
-    app-inputs {
-        width: 741px;
-    }
-
-    app-main-button {
-        width: max-content;
-    }
 
     small {
-
         margin-top: 12px;
         a {
             color: $accent;
         }
+    }
+
+    @media (max-width: 860px) {
+        padding-top: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }

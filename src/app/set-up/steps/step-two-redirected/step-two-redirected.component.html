@@ -1,0 +1,21 @@
+<div id="container">
+    <div id="contents" *ngIf="success; else unsuccessfulContent">
+
+        <h2>Account connected!</h2>
+        <h5>Your spotify account was successfully connected to your Lithium account.</h5>
+        
+        <app-main-button [text]="'next'" [size]="'xl'" (click)="goToNext()"></app-main-button>
+        <app-secondary-button [text]="'back'" [size]="'large'" (click)="goBack()"></app-secondary-button>
+    </div>
+
+    <ng-template #unsuccessfulContent>
+        <div id="contents">
+
+            <h2>Account connection failed!</h2>
+            <h5>Unfortunately, we couldn't connect your Spotify account to your Lithium account.</h5>
+            
+            <app-main-button [text]="'retry'" [size]="'xl'" (click)="apiService.connectSpotify"></app-main-button>
+            <app-secondary-button [text]="'back'" [size]="'large'" (click)="goBack()"></app-secondary-button>
+        </div>
+    </ng-template>
+</div>

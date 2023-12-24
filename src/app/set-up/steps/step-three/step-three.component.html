@@ -1,0 +1,20 @@
+<div id="container">
+    <div id="contents">
+        <p id="optional-text">this step is optional</p>
+        <h2>Choose device to play on.</h2>
+        <p>1.   Play something from the device that you plan on using Lithium with. <br>
+            2.  Select the device from the menu below.</p>
+        
+
+        <div id="device-container">
+            <div class="device" *ngFor="let device of devices" @fadeInOut
+                (click)="chooseDevice(device.id)" [ngClass]="{'selected': device.id === chosenDeviceId}"
+            >
+                {{device.type}}: {{device.name}}
+            </div>
+        </div>   
+        <small>You can change this later.</small>
+        <app-main-button [text]="chosenDeviceId ? 'next' : 'skip step'" [size]="'large'" (click)="goToNext()"></app-main-button>
+        <app-secondary-button [text]="'back'" [size]="'large'" (click)="goBack()"></app-secondary-button>
+    </div>
+</div>
