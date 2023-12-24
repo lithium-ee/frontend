@@ -8,6 +8,11 @@
         ],
       },
       // NOTE: WE ARE NOT APPLYING PRETTIER IN THIS OVERRIDE, ONLY @ANGULAR-ESLINT/TEMPLATE
+      {
+        "files": ["*.html"],
+        "extends": ["plugin:@angular-eslint/template/recommended"],
+        "rules": {}
+      },
       // NOTE: WE ARE NOT APPLYING @ANGULAR-ESLINT/TEMPLATE IN THIS OVERRIDE, ONLY PRETTIER
       {
         "files": ["*.html"],
