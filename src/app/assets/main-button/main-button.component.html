@@ -1,8 +1,9 @@
-<button [ngClass]="{
-    'small': size === 'small', 
-    'medium': size === 'medium', 
-    'large': size === 'large',
-    'xl': size === 'xl'
+<button
+    [ngClass]="{
+        small: size === 'small',
+        medium: size === 'medium',
+        large: size === 'large',
+        xl: size === 'xl'
     }">
-        {{text}}
-    </button>
+    {{ text }}
+</button>

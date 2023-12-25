@@ -1,0 +1,93 @@
+@import '../../set-up.component.scss';
+@import 'src/assets/style-variables.scss';
+
+#container {
+    @extend #container;
+    
+    #contents {
+
+        #overview-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            gap: 8px;
+            .overview-element {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+
+                .field-name {
+                    padding: 4px 16px;
+                    background-color: $secondary;
+                    box-shadow: 4px 4px 0px $accent;
+                    color: $bg;
+                    border-radius: 4px;
+                    border: 1px solid $bg;
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        #button-container {
+            position: relative;
+            width: fit-content;
+            &:hover {
+                scale: 1.05;
+            }
+            transition-duration: 100ms;
+            #bg {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                background: linear-gradient(270deg, $secondary, $accent, $secondary, $accent);
+                background-size: 600% 600%;
+                animation: Gradient 6s ease infinite;
+                filter: blur(0px);
+            }
+
+            button {
+                width: fit-content;
+                border-radius: 8px;
+                border: 1px solid black;
+                color: $text;
+                position: relative;
+                z-index: 1; // This will place the button above the pseudo-element
+
+                font-size: 20px;
+                padding: 15px 30px;
+                cursor: pointer;
+                
+                // other styles...
+                background: linear-gradient(270deg, $primary, $secondary, $accent);
+                background-size: 600% 600%;
+                animation: Gradient 6s ease infinite;
+
+                
+
+                transition-duration: 200ms;
+            
+                // Add a hover effect
+                
+            
+                // Add an active effect
+                &:active {
+                    scale: 1.05;
+                }
+
+            }
+        }
+
+        
+        @keyframes Gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    }
+
+}

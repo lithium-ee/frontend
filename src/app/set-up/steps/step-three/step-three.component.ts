@@ -5,6 +5,7 @@ import { ApiService } from '../../../services/api.service';
 import { Subject, catchError, of, takeUntil } from 'rxjs';
 import { Device } from '../../interfaces/device.interface';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { EventInfoDto } from '../../interfaces/event-info.dto';
 
 @Component({
     selector: 'app-step-three',
@@ -34,7 +35,7 @@ export class StepThreeComponent implements OnInit, OnDestroy {
     private destroy$ = new Subject<void>();
     private intervalId?: number;
     public devices: Device[] = [];
-    public chosenDeviceId?: string;
+    public chosenDevice: EventInfoDto['device'] = undefined;
 
     ngOnInit() {
         this.getActiveDevices();
@@ -43,15 +44,18 @@ export class StepThreeComponent implements OnInit, OnDestroy {
         }, 5000);
     }
 
-    public chooseDevice(deviceId: string) {
-        this.chosenDeviceId === deviceId
-            ? (this.chosenDeviceId = undefined)
-            : (this.chosenDeviceId = deviceId);
+    public chooseDevice(device: Device) {
+        this.chosenDevice?.id === device.id
+            ? (this.chosenDevice = undefined)
+            : (this.chosenDevice = {
+                  id: device.id,
+                  name: device.name,
+              });
     }
 
     public goToNext() {
         this.setUpService.updateEventInfo({
-            deviceId: this.chosenDeviceId,
+            device: this.chosenDevice,
         });
         this.router.navigate(['/set-up/step-four']);
     }

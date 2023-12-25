@@ -1,10 +1,25 @@
 <div id="container">
     <div id="contents">
         <h1>Set a cooldown</h1>
-        <small>Determine how often a single person can add songs into your queue <br>Leave empty if you don't want to set a cooldown.</small>
-        <input type="time" id="cooldown" name="cooldown" [(ngModel)]="cooldown">
+        <small
+            >Determine how often a single person can add songs into your queue
+            <br />Leave empty if you don't want to set a cooldown.</small
+        >
+        <div id="input-container">
+            <small>Cooldown user for:</small>
+            <input type="number" [(ngModel)]="cooldown.hours" />
+            <small>hours and</small>
+            <input type="number" [(ngModel)]="cooldown.minutes" />
+            <small>minutes.</small>
+        </div>
 
-        <app-main-button [text]="'next'" [size]="'large'" (click)="goToNext()"></app-main-button>
-        <app-secondary-button [text]="'back'" [size]="'large'" (click)="goToBack()"></app-secondary-button>
+        <app-main-button
+            [text]="'next'"
+            [size]="'large'"
+            (click)="goToNext()"></app-main-button>
+        <app-secondary-button
+            [text]="'back'"
+            [size]="'large'"
+            (click)="goToPrevious()"></app-secondary-button>
     </div>
 </div>

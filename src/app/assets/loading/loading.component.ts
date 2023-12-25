@@ -55,11 +55,11 @@ export class LoadingComponent implements OnInit, OnDestroy {
 
         const loadingEnd$ = this.loadingService.loading$.pipe(
             filter(loading => !loading),
-            switchMap(() => of(false).pipe(delay(200))),
+            switchMap(() => of(false).pipe(delay(400))),
             tap(() => {
                 setTimeout(() => {
                     this.visible = false;
-                }, 200); // delay setting visible to false
+                }, 400); // delay setting visible to false
             })
         );
 

@@ -3,23 +3,38 @@
 
 #container {
     @extend #container;
-    input[type="time"] {
-        width: 100%;
-        max-width: 300px;
-        padding: 10px;
-        border: 1px solid #000000;
-        color: $bg;
-        background-color: $secondary;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        box-shadow: 4px 4px 2px $secondary; // Add this line
+    
+    #input-container {
+        display: flex;
+        // add agp between children elements
+        gap: 10px;
+        // center vertically
+        align-items: center;
 
-        &:focus {
-            outline: 1px solid $primary !important; // Modify this line
+        input[type="number"] {
+            width: 50px;
+            padding: 10px;
+            border: 1px solid $secondary;
+            color: $bg;
+            background-color: $secondary;
+            border-radius: 4px;
+            box-sizing: border-box;
+            // center
+            text-align: center;
+            // remove arrows
+            -moz-appearance: textfield; // for Firefox
+
+            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { // for Chrome, Safari, Edge
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+    
+            &:focus {
+                outline: 1px solid $primary !important; // Modify this line
+            }
         }
-
     }
+    
     
 }

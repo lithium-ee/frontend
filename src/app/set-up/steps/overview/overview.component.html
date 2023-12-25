@@ -1,0 +1,19 @@
+<div id="container">
+    <div id="contents">
+        <h3>Creating an event with the following configuration:</h3>
+        <div id="overview-container">
+            <div class="overview-element" *ngFor="let item of overviewFields">
+                <div class="field-name">{{ item.label }}:</div>
+                {{ item.value }}
+            </div>
+        </div>
+        <div id="button-container">
+            <button (click)="createEvent()">Create event</button>
+            <div id="bg"></div>
+        </div>
+        <app-secondary-button
+            [text]="'back'"
+            [size]="'large'"
+            (click)="goToPrevious()"></app-secondary-button>
+    </div>
+</div>

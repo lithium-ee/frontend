@@ -5,7 +5,7 @@
         "files": ["*.ts"],
         "extends": [
             "plugin:prettier/recommended"
-        ],
+        ]
       },
       // NOTE: WE ARE NOT APPLYING PRETTIER IN THIS OVERRIDE, ONLY @ANGULAR-ESLINT/TEMPLATE
       {

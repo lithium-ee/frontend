@@ -1,0 +1,45 @@
+@import '../../set-up.component.scss';
+@import 'src/assets/style-variables.scss';
+
+#container {
+    @extend #container;
+    
+    #contents{
+        small {
+            max-width: 530px;
+        }
+
+            .button {
+                width: fit-content;
+                padding: 10px 20px;
+                border-radius: 4px;
+                border: 1px solid $secondary;
+                background-color: $secondary;
+                color: $bg;
+                font-size: 16px;
+                font-weight: 400;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &:hover {
+                    background-color: $accent;
+                    border: 1px solid $bg;
+                }
+
+                &:active {
+                    background-color: $accent;
+                    transform: scale(0.95);
+                    
+                }
+            }
+            .button-active {
+
+                box-shadow: 4px 4px 0px 0px $accent; // adjust as needed
+                background-color: $secondary ;
+                border: 1px solid $bg;
+        }
+    }
+}
