@@ -1,5 +1,9 @@
 export interface EventInfoDto {
     eventName: string;
-    deviceId?: string;
-    cooldown?: number;
+    device?: {
+        id: string;
+        name: string;
+    };
+    cooldown: string;
+    filteringOn: boolean;
 }

@@ -18,6 +18,9 @@ export class SetUpService {
 
     public eventInfo: EventInfoDto = {
         eventName: '',
+        device: undefined,
+        cooldown: '0:0',
+        filteringOn: false,
     };
 
     public setProgress(value: number) {
@@ -25,7 +28,10 @@ export class SetUpService {
     }
 
     public updateEventInfo(eventInfo: Partial<EventInfoDto>) {
+        console.log(eventInfo);
+        console.log(this.eventInfo);
         this.eventInfo = { ...this.eventInfo, ...eventInfo };
-        localStorage.setItem('eventInfo', JSON.stringify(eventInfo));
+        console.log(this.eventInfo);
+        localStorage.setItem('eventInfo', JSON.stringify(this.eventInfo));
     }
 }

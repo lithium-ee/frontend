@@ -15,18 +15,23 @@ export class StepFourComponent {
         this.setUpService.setProgress((100 / 6) * 4);
     }
 
-    cooldown?: number;
+    cooldown: {
+        hours: number;
+        minutes: number;
+    } = {
+        hours: 0,
+        minutes: 0,
+    };
 
     goToNext() {
         // get the input value
         this.setUpService.updateEventInfo({
-            cooldown: this.cooldown,
+            cooldown: `${this.cooldown.hours}:${this.cooldown.minutes}`,
         });
-
-        // this.router.navigate(['set-up/step-five']);
+        this.router.navigate(['set-up/step-five']);
     }
 
-    public goToBack() {
-        // this.router.navigate(['set-up/step-three']);
+    public goToPrevious() {
+        this.router.navigate(['set-up/step-three']);
     }
 }

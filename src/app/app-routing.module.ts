@@ -14,6 +14,7 @@ import { StepThreeComponent } from './set-up/steps/step-three/step-three.compone
 import { StepTwoRedirectedComponent } from './set-up/steps/step-two-redirected/step-two-redirected.component';
 import { StepFourComponent } from './set-up/steps/step-four/step-four.component';
 import { StepFiveComponent } from './set-up/steps/step-five/step-five.component';
+import { OverviewComponent } from './set-up/steps/overview/overview.component';
 
 const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
             { path: 'step-three', component: StepThreeComponent },
             { path: 'step-four', component: StepFourComponent },
             { path: 'step-five', component: StepFiveComponent },
+            { path: 'overview', component: OverviewComponent },
         ],
     },
     { path: '**', component: LandingPageComponent },

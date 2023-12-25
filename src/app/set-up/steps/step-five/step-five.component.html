@@ -1,1 +1,33 @@
-<p>step-five works!</p>
+<div id="container">
+    <div id="contents">
+        <h2>Do you want to filter song request?</h2>
+        <small>
+            This feature enables you to filter the songs that actually make it
+            to the queue. <br />
+            The song requests will appear on your Lithium admin panel, where you
+            can choose which ones get sent to the queue
+        </small>
+        <div
+            class="button"
+            [ngClass]="{
+                'button-active': filteringOn
+            }"
+            (click)="toggleFiltering()">
+            {{
+                !filteringOn
+                    ? 'turn on song filtering'
+                    : 'turn off song filtering'
+            }}
+        </div>
+
+        <app-main-button
+            [text]="'next'"
+            [size]="'large'"
+            (click)="goToNext()"></app-main-button>
+
+        <app-secondary-button
+            [text]="'back'"
+            [size]="'large'"
+            (click)="goToPrevious()"></app-secondary-button>
+    </div>
+</div>

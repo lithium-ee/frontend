@@ -28,6 +28,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepFourComponent } from './set-up/steps/step-four/step-four.component';
 import { StepFiveComponent } from './set-up/steps/step-five/step-five.component';
+import { OverviewComponent } from './set-up/steps/overview/overview.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import { StepFiveComponent } from './set-up/steps/step-five/step-five.component'
         LoadingComponent,
         StepFourComponent,
         StepFiveComponent,
+        OverviewComponent,
     ],
     imports: [
         BrowserModule,
