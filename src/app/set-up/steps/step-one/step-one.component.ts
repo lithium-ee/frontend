@@ -16,7 +16,7 @@ export class StepOneComponent {
     }
 
     onSubmit(obj: { [key: string]: any }) {
-        this.setUpService.updateEventInfo(obj as { eventName: string });
+        this.setUpService.updateEventInfo(obj as { name: string });
         // redirect to step two
         this.router.navigate(['/set-up/step-two']);
     }

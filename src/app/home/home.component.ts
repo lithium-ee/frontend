@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './home.service';
 import { AppService } from '../app.service';
 
 @Component({
@@ -7,7 +8,11 @@ import { AppService } from '../app.service';
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-    constructor(private appService: AppService) {
+    constructor(
+        private homeService: HomeService,
+        private appService: AppService
+    ) {
         this.appService.headerType = 'logged-in';
+        this.homeService.getUserEvent();
     }
 }

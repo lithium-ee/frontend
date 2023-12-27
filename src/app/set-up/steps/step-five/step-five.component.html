@@ -10,11 +10,11 @@
         <div
             class="button"
             [ngClass]="{
-                'button-active': filteringOn
+                'button-active': filterSongs
             }"
             (click)="toggleFiltering()">
             {{
-                !filteringOn
+                !filterSongs
                     ? 'turn on song filtering'
                     : 'turn off song filtering'
             }}

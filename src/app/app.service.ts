@@ -23,6 +23,7 @@ export class AppService {
     // log out
     public logout(): void {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('event');
         this.router.navigate(['/']);
     }
 }

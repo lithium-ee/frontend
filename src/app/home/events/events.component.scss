@@ -1,8 +1,103 @@
 @import '../../landing-page/landing-page.component.scss';
+@import 'src/assets/style-variables.scss';
 
 #container {
     @extend #container;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    height: 100vh;
+    padding-bottom: 115px;
+
+    #contents {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 100%;
+
+        
+
+        #logs-and-requests {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            min-height: 400px;
+            gap: 10px;
+
+            #logs, #requests {
+                height: 100%;
+                width: 100%;
+                border-radius: 4px;
+                border: 1px solid $secondary;
+                background-color: $bg;
+                padding: 4px;
+                display: flex;
+                flex-direction: column;
+                overflow-y: scroll;
+                gap: 6px;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+                
+                // Hide scrollbar for IE, Edge and Firefox
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+                
+
+                .info-container {
+                    .label {
+                        margin: 0 auto;
+                    }
+                    margin-bottom: 12px;
+                }
+                .queue-entry {
+                    display: inline;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    border: 1px solid $accent;
+                    margin-bottom: 4px;
+                    .artist {
+                        color: $primary;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        padding-bottom: 20px;
+
+        #contents {
+            #logs-and-requests {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    .label {
+        padding: 4px 16px;
+        background-color: $secondary;
+        box-shadow: 4px 4px 0px $accent;
+        color: $bg;
+        border-radius: 4px;
+        border: 1px solid $bg;
+        flex-shrink: 0;
+        height: fit-content;
+        width: fit-content;
+    }
+
 }

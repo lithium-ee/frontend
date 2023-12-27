@@ -1,9 +1,9 @@
 export interface EventInfoDto {
-    eventName: string;
+    name: string;
     device?: {
         id: string;
         name: string;
     };
     cooldown: string;
-    filteringOn: boolean;
+    filterSongs: boolean;
 }

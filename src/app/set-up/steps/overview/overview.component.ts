@@ -3,6 +3,7 @@ import { SetUpService } from '../../set-up.service';
 import { Router } from '@angular/router';
 import { OverViewField } from '../../interfaces/overview-field.interface';
 import { EventInfoDto } from '../../interfaces/event-info.dto';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
     selector: 'app-overview',
@@ -12,7 +13,8 @@ import { EventInfoDto } from '../../interfaces/event-info.dto';
 export class OverviewComponent {
     constructor(
         private setUpService: SetUpService,
-        private router: Router
+        private router: Router,
+        private apiService: ApiService
     ) {
         this.setUpService.setProgress((100 / 6) * 6);
         this.overviewFields = this.generateOverviewFields(
@@ -23,10 +25,10 @@ export class OverviewComponent {
     private generateOverviewFields(eventInfo: EventInfoDto): OverViewField[] {
         // Define the labels for the keys
         const labels: { [key: string]: string } = {
-            eventName: 'Event name',
+            name: 'Event name',
             device: 'Play on device',
             cooldown: 'timeout users for',
-            filteringOn: 'filter song requests',
+            filterSongs: 'filter song requests',
             // Add more labels as needed
         };
 
@@ -47,8 +49,8 @@ export class OverviewComponent {
                 } else {
                     return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
                 }
-            case 'filteringOn':
-                // Convert the filteringOn boolean to a user-friendly string
+            case 'filterSongs':
+                // Convert the filterSongs boolean to a user-friendly string
                 return value ? 'On' : 'Off';
             // Add more cases as needed
             case 'device':
@@ -63,9 +65,18 @@ export class OverviewComponent {
     }
 
     public overviewFields: OverViewField[] = [];
+    public error: string = '';
 
     public createEvent() {
-        this.router.navigate(['/home']);
+        this.apiService.createEvent(this.setUpService.eventInfo).subscribe({
+            next: () => {
+                this.setUpService.deleteSetUpDataFromLocalStorage();
+                this.router.navigate(['/home']);
+            },
+            error: (err: any) => {
+                this.error = err.error.message;
+            },
+        });
     }
 
     public goToPrevious() {

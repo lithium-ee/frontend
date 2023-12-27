@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepFourComponent } from './set-up/steps/step-four/step-four.component';
 import { StepFiveComponent } from './set-up/steps/step-five/step-five.component';
 import { OverviewComponent } from './set-up/steps/overview/overview.component';
+import { AddSongsComponent } from './add-songs/add-songs.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { OverviewComponent } from './set-up/steps/overview/overview.component';
         StepFourComponent,
         StepFiveComponent,
         OverviewComponent,
+        AddSongsComponent,
     ],
     imports: [
         BrowserModule,

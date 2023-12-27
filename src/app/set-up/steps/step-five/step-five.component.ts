@@ -13,15 +13,14 @@ export class StepFiveComponent {
         private router: Router
     ) {
         this.setUpService.setProgress((100 / 6) * 5);
-        console.log(this.setUpService.eventInfo);
     }
 
-    public filteringOn: boolean = this.setUpService.eventInfo.filteringOn;
+    public filterSongs: boolean = this.setUpService.eventInfo.filterSongs;
 
     public toggleFiltering() {
-        this.filteringOn = !this.filteringOn;
+        this.filterSongs = !this.filterSongs;
         this.setUpService.updateEventInfo({
-            filteringOn: this.filteringOn,
+            filterSongs: this.filterSongs,
         });
     }
 

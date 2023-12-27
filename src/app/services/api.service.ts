@@ -5,6 +5,7 @@ import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
 import { environment } from '../../../environment';
 import { AppService } from '../app.service';
+import { EventInfoDto } from '../set-up/interfaces/event-info.dto';
 
 @Injectable({
     providedIn: 'root',
@@ -89,6 +90,50 @@ export class ApiService {
         ) as Observable<boolean>;
     }
 
+    public createEvent(eventInfo: EventInfoDto): Observable<boolean> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+        const body = {
+            ...eventInfo,
+            cooldown: this.convertToMilliseconds(eventInfo.cooldown),
+        };
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${accessToken}`
+        );
+        return this.http.post(`${environment.API_URL}/events`, body, {
+            headers: headers,
+        }) as Observable<boolean>;
+    }
+
+    public getUserEvent(): Observable<EventInfoDto> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+
+        // make request to the API
+        const headers = new HttpHeaders().set(
+            'Authorization',
+            `Bearer ${accessToken}`
+        );
+
+        return this.http.get(`${environment.API_URL}/events`, {
+            headers: headers,
+        }) as Observable<EventInfoDto>;
+    }
+
+    public getQueueAndRequests(): Observable<any> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+
+        const headers = new HttpHeaders()
+            .set('Authorization', `Bearer ${accessToken}`)
+            .set('skipInterceptor', 'true');
+
+        return this.http.get(
+            `${environment.API_URL}/events/queue-and-requests`,
+            {
+                headers: headers,
+            }
+        ) as Observable<any>;
+    }
+
     private generateRandomString(length: number): string {
         let text = '';
         const possible =
@@ -101,5 +146,9 @@ export class ApiService {
         }
 
         return text;
+    }
+    private convertToMilliseconds(time: string): number {
+        const [hours, minutes] = time.split(':').map(Number);
+        return (hours * 60 * 60 + minutes * 60) * 1000;
     }
 }

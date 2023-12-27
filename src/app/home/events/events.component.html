@@ -1,5 +1,37 @@
-<div id="container">
-    <h2>You have no active events.</h2>
-    <h5>Creating a new event is easy!</h5>
-    <app-main-button [size]="'xl'" [text]="'create event'" (click)="startSetup()"></app-main-button>
+<div id="container" *ngIf="homeService.event; else noEvent">
+    <div id="contents">
+        <h2>
+            {{ homeService.event.name }}
+        </h2>
+        <div class="info-container">
+            <div class="label">url:</div>
+            https://www.example.com
+        </div>
+        <div id="logs-and-requests">
+            <div id="logs">
+                <div class="info-container">
+                    <div class="label">queue:</div>
+                </div>
+                <div class="queue-entry" *ngFor="let song of queue" @fadeIn>
+                    {{ song.name }} by
+                    <span class="artist">{{ song.artists }}</span>
+                </div>
+            </div>
+            <div id="requests">
+                <div class="info-container">
+                    <div class="label">requests:</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<ng-template #noEvent>
+    <div id="container">
+        <h2>You have no active events.</h2>
+        <h5>Creating a new event is easy!</h5>
+        <app-main-button
+            [size]="'xl'"
+            [text]="'create event'"
+            (click)="startSetup()"></app-main-button>
+    </div>
+</ng-template>
