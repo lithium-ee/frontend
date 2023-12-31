@@ -25,7 +25,7 @@ export class HomeService {
             next: (event: ExtendedEventInfoDto) => {
                 this.event = event;
                 this.clientUrl = event
-                    ? environment.CLIENT_URL + '/init?e=' + event.id
+                    ? environment.CLIENT_URL + '/#/init?e=' + event.id
                     : '';
                 this.saveEventToLocalStorage();
             },
