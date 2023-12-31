@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { ApiService } from '../services/api.service';
-import { EventInfoDto } from '../set-up/interfaces/event-info.dto';
+import {
+    EventInfoDto,
+    ExtendedEventInfoDto,
+} from '../set-up/interfaces/event-info.dto';
+import { environment } from '../../../environment';
 
 @Injectable({
     providedIn: 'root',
@@ -13,12 +17,16 @@ export class HomeService {
     ) {
         this.appService.headerType = 'logged-in';
     }
-    public event: EventInfoDto | undefined;
+    public event: ExtendedEventInfoDto | undefined;
+    public clientUrl: string = '';
 
     public getUserEvent(): void {
         this.apiService.getUserEvent().subscribe({
-            next: (event: EventInfoDto) => {
+            next: (event: ExtendedEventInfoDto) => {
                 this.event = event;
+                this.clientUrl = event
+                    ? environment.CLIENT_URL + '/init?e=' + event.id
+                    : '';
                 this.saveEventToLocalStorage();
             },
             error: (err: any) => {

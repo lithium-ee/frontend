@@ -4,6 +4,7 @@ import { InputsComponent } from '../assets/inputs/inputs.component';
 import { ApiService } from '../services/api.service';
 import { SignUpDto } from '../services/dto/sign-up.dto';
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sign-up',
@@ -13,7 +14,8 @@ import { AppService } from '../app.service';
 export class SignUpComponent {
     constructor(
         private readonly apiService: ApiService,
-        private readonly appService: AppService
+        private readonly appService: AppService,
+        private router: Router
     ) {}
 
     public errorMessage: string = '';
@@ -75,6 +77,7 @@ export class SignUpComponent {
                 next: response => {
                     this.errorMessage = '';
                     this.appService.setAuthToken(response.access_token);
+                    this.router.navigate(['/home']);
                 },
                 error: err => {
                     this.errorMessage = err.error.message;

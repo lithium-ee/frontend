@@ -53,18 +53,74 @@
                     }
                     margin-bottom: 12px;
                 }
-                .queue-entry {
+                .entry {
                     display: inline;
                     align-items: center;
                     gap: 8px;
-                    padding: 4px 8px;
+                    padding: 8px 8px;
                     border-radius: 4px;
                     border: 1px solid $accent;
                     margin-bottom: 4px;
-                    .artist {
-                        color: $primary;
+                    cursor: pointer;
+
+                    small {
+                        margin: 0;
+                        font-size: 1.2em;
+
+                        .title {
+                            font-size: inherit;
+                            color: $accent;
+                        }
                     }
-                    
+
+                    #hidden-info {
+                        box-sizing: border-box;
+                        width: 100%;
+                        position: relative;
+                        // padding: 8px;
+                        overflow: hidden;
+                        transition: height 0.5s ease-in-out;
+                        display: flex;
+                        justify-content: space-between;
+
+                        button {
+                            // remove default button styles
+                            margin: 8px;
+                            border: 1px solid $accent;
+                            font: inherit;
+                            cursor: pointer;
+                            outline: inherit;
+                            color: $text;
+                            background-color: $bg;
+                            border-radius: 4px;
+                            transition-duration: 200ms;
+
+                            padding: 4px 8px;
+                            flex-grow: 0;
+                        }
+
+                        .middle-buttons {
+                            display: flex;
+                        }
+
+                        .accept{ 
+                            &:hover {
+                                border: 1px solid #6a994e;
+                            }
+                        }
+                        .reject{ 
+                            &:hover {
+                                border: 1px solid #e63946;
+                            }
+                        }
+                        .suspend{ 
+                            &:hover {
+                                background-color: #e63946;
+                                border: 1px solid #e63946;
+                            }
+                        }
+                    }
+
                 }
             }
         }

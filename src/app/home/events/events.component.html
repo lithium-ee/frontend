@@ -5,21 +5,55 @@
         </h2>
         <div class="info-container">
             <div class="label">url:</div>
-            https://www.example.com
+            {{ homeService.clientUrl }}
         </div>
         <div id="logs-and-requests">
             <div id="logs">
                 <div class="info-container">
-                    <div class="label">queue:</div>
+                    <div class="label">logs:</div>
                 </div>
-                <div class="queue-entry" *ngFor="let song of queue" @fadeIn>
-                    {{ song.name }} by
-                    <span class="artist">{{ song.artists }}</span>
+                <div class="entry" *ngFor="let song of logs">
+                    <small
+                        >added {{ song.title }} by {{ song.artists }} to
+                        queue</small
+                    >
                 </div>
             </div>
             <div id="requests">
                 <div class="info-container">
                     <div class="label">requests:</div>
+                </div>
+                <div
+                    class="entry"
+                    *ngFor="let song of requests"
+                    (click)="toggleInfo(song.id)">
+                    <small>
+                        request to add
+                        <small class="title">
+                            {{ song.title }}
+                        </small>
+                        by {{ song.artists }} to queue
+                    </small>
+
+                    <div
+                        id="hidden-info"
+                        [@expandCollapse]="showInfo[song.id] || 'collapsed'">
+                        <div class="middle-buttons">
+                            <button
+                                class="accept"
+                                (click)="acceptRequest(song.id)">
+                                accept
+                            </button>
+                            <button
+                                class="reject"
+                                (click)="rejectRequest(song.id)">
+                                reject
+                            </button>
+                        </div>
+                        <button class="suspend" (click)="suspendUser(song.id)">
+                            suspend
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,14 +1,29 @@
 <nav>
     <h4>Lithium</h4>
-    <div id="buttons-container" *ngIf="headerType == 'not-logged-in'">
+    <div id="buttons-container" *ngIf="headerType === 'not-logged-in'">
         <p><a routerLink="/sign-in">log in</a></p>
-        <app-main-button [text]="'get started'" [size]="'small'" (click)="goToSignUp()"></app-main-button>
+        <app-main-button
+            [text]="'get started'"
+            [size]="'small'"
+            (click)="goToSignUp()"></app-main-button>
     </div>
-    <div id="menu-buttons" *ngIf="headerType == 'logged-in'">
-        <button [class.active]="currentPath === 'events'" (click)="navigateTo('events')">events</button>
-        <button [class.active]="currentPath === 'account'" (click)="navigateTo('account')">account</button>
+    <div id="menu-buttons" *ngIf="headerType === 'logged-in'">
+        <!-- <button
+            [class.active]="currentPath === 'events'"
+            (click)="navigateTo('events')">
+            events
+        </button>
+        <button
+            [class.active]="currentPath === 'account'"
+            (click)="navigateTo('account')">
+            account
+        </button> -->
     </div>
 
-    <p id="log-out" *ngIf="headerType == 'logged-in'" (click)="appService.logout()">log out</p>
-
+    <p
+        id="log-out"
+        *ngIf="headerType === 'logged-in'"
+        (click)="appService.logout()">
+        log out
+    </p>
 </nav>

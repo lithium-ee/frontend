@@ -7,3 +7,7 @@ export interface EventInfoDto {
     cooldown: string;
     filterSongs: boolean;
 }
+
+export interface ExtendedEventInfoDto extends EventInfoDto {
+    id: string;
+}

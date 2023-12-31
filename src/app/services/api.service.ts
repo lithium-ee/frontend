@@ -5,7 +5,10 @@ import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
 import { environment } from '../../../environment';
 import { AppService } from '../app.service';
-import { EventInfoDto } from '../set-up/interfaces/event-info.dto';
+import {
+    EventInfoDto,
+    ExtendedEventInfoDto,
+} from '../set-up/interfaces/event-info.dto';
 
 @Injectable({
     providedIn: 'root',
@@ -105,7 +108,7 @@ export class ApiService {
         }) as Observable<boolean>;
     }
 
-    public getUserEvent(): Observable<EventInfoDto> {
+    public getUserEvent(): Observable<ExtendedEventInfoDto> {
         const accessToken = this.appService.getAuthToken(); // Get the access token
 
         // make request to the API
@@ -116,22 +119,67 @@ export class ApiService {
 
         return this.http.get(`${environment.API_URL}/events`, {
             headers: headers,
-        }) as Observable<EventInfoDto>;
+        }) as Observable<ExtendedEventInfoDto>;
     }
 
-    public getQueueAndRequests(): Observable<any> {
+    public getLogsAndRequests(): Observable<any> {
         const accessToken = this.appService.getAuthToken(); // Get the access token
 
         const headers = new HttpHeaders()
             .set('Authorization', `Bearer ${accessToken}`)
             .set('skipInterceptor', 'true');
 
-        return this.http.get(
-            `${environment.API_URL}/events/queue-and-requests`,
+        return this.http.get(`${environment.API_URL}/songs/logs-and-requests`, {
+            headers: headers,
+        }) as Observable<any>;
+    }
+
+    public acceptRequest(songId: string): Observable<boolean> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+
+        const headers = new HttpHeaders()
+            .set('Authorization', `Bearer ${accessToken}`)
+            .set('skipInterceptor', 'true');
+
+        return this.http.post(
+            `${environment.API_URL}/songs/accept-request`,
             {
-                headers: headers,
-            }
-        ) as Observable<any>;
+                songId: songId,
+            },
+            { headers: headers }
+        ) as Observable<boolean>;
+    }
+
+    public rejectRequest(songId: string): Observable<boolean> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+
+        const headers = new HttpHeaders()
+            .set('Authorization', `Bearer ${accessToken}`)
+            .set('skipInterceptor', 'true');
+
+        return this.http.post(
+            `${environment.API_URL}/songs/reject-request`,
+            {
+                songId: songId,
+            },
+            { headers: headers }
+        ) as Observable<boolean>;
+    }
+
+    public suspendUser(songId: string): Observable<boolean> {
+        const accessToken = this.appService.getAuthToken(); // Get the access token
+
+        const headers = new HttpHeaders()
+            .set('Authorization', `Bearer ${accessToken}`)
+            .set('skipInterceptor', 'true');
+
+        return this.http.post(
+            `${environment.API_URL}/end-user/suspend-enduser`,
+            {
+                songId: songId,
+            },
+            { headers: headers }
+        ) as Observable<boolean>;
     }
 
     private generateRandomString(length: number): string {
