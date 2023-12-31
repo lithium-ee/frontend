@@ -37,6 +37,8 @@ export class ApiService {
         const state = this.generateRandomString(16);
         const scope = environment.SCOPE; // Use the scope from the environment file
 
+        console.log(environment.LOCAL_URL);
+
         const params = new HttpParams()
             .set('response_type', 'code')
             .set('client_id', environment.CLIENT_ID) // Use the client ID from the environment file
