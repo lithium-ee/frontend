@@ -18,7 +18,6 @@ export class StepTwoRedirectedComponent implements OnInit {
     success: boolean = false;
     ngOnInit() {
         this.code = this.route.snapshot.queryParamMap.get('code');
-      console.log(this.code)
         if (this.code) {
             this.apiService.saveCode(this.code).subscribe({
                 next: res => {

@@ -23,7 +23,6 @@ export const AuthGuard: CanActivateFn = () => {
         .pipe(
             map(response => {
                 // If the server responds with a success status, return true
-                console.log(response);
                 return response;
             }),
             catchError(error => {

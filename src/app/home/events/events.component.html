@@ -3,7 +3,12 @@
         <h2>
             {{ homeService.event.name }}
         </h2>
-        <div class="info-container">
+        <div
+            #tooltip="matTooltip"
+            id="url-container"
+            class="info-container"
+            matTooltip="{{ tooltipText }}"
+            (click)="copyToClipboard(homeService.clientUrl)">
             <div class="label">url:</div>
             {{ homeService.clientUrl }}
         </div>

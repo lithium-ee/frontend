@@ -1,5 +1,8 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,6 +65,9 @@ import { OverviewComponent } from './set-up/steps/overview/overview.component';
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        ClipboardModule,
+        MatTooltipModule,
+        MatButtonModule,
     ],
     providers: [
         {

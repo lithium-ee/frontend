@@ -1,5 +1,6 @@
 @import '../../landing-page/landing-page.component.scss';
 @import 'src/assets/style-variables.scss';
+    
 
 #container {
     @extend #container;
@@ -15,6 +16,21 @@
         gap: 10px;
         height: 100%;
 
+
+        
+        
+        #url-container {
+            cursor: pointer;
+
+            // remove default button styles
+            margin: 8px;
+            font: inherit;
+            background-color: transparent;
+            border: none;
+            color: white;
+
+
+        }
         
 
         #logs-and-requests {

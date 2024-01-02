@@ -6,6 +6,7 @@ import {
     ExtendedEventInfoDto,
 } from '../set-up/interfaces/event-info.dto';
 import { environment } from '../../env/environment';
+import { Observable, Subject, interval, switchMap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -28,11 +29,18 @@ export class HomeService {
                     ? environment.CLIENT_URL + '/init?e=' + event.id
                     : '';
                 this.saveEventToLocalStorage();
+                this.eventFound.next();
             },
             error: (err: any) => {
                 console.error(err);
             },
         });
+    }
+
+    private eventFound = new Subject<void>();
+
+    getEventForUserFound(): Observable<void> {
+        return this.eventFound.asObservable();
     }
 
     private saveEventToLocalStorage(): void {

@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { ApiService } from '../../services/api.service';
-import { interval, switchMap, tap } from 'rxjs';
+import { Clipboard } from '@angular/cdk/clipboard';
+import {
+    Observable,
+    Subscription,
+    interval,
+    startWith,
+    switchMap,
+    tap,
+} from 'rxjs';
 import { Song } from './interfaces/song.interface';
 import {
     trigger,
@@ -11,6 +19,7 @@ import {
     transition,
     animate,
 } from '@angular/animations';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-events',
@@ -27,46 +36,65 @@ import {
         ]),
     ],
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnDestroy {
     constructor(
         private router: Router,
         public homeService: HomeService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private clipboard: Clipboard
     ) {
-        if (!this.homeService.event) return;
-        interval(5000)
-            .pipe(switchMap(() => this.fetchLogsAndRequests()))
-            .subscribe();
+        this.startRequestingInterval = this.homeService
+            .getEventForUserFound()
+            .subscribe(() => {
+                this.startLogsAndRequestsInterval();
+            });
     }
 
-    ngOnInit(): void {
-        if (!this.homeService.event) return;
-        this.fetchLogsAndRequests().subscribe();
-    }
-
+    @ViewChild('tooltip') tooltip?: MatTooltip;
+    public tooltipText = 'Click to copy';
+    public logs: Song[] = [];
+    public requests: Song[] = [];
     public showInfo: { [key: string]: string } = {};
 
-    toggleInfo(id: string) {
+    private startRequestingInterval: Subscription;
+    private intervalSubscription?: Subscription;
+
+    public toggleInfo(id: string) {
         this.showInfo[id] =
             this.showInfo[id] === 'expanded' ? 'collapsed' : 'expanded';
     }
 
-    public logs: Song[] = [];
-    public requests: Song[] = [];
-    url: string = '';
+    public startLogsAndRequestsInterval() {
+        this.intervalSubscription = interval(5000)
+            .pipe(
+                startWith(0),
+                switchMap(() => this.fetchLogsAndRequests())
+            )
+            .subscribe();
+    }
 
     public startSetup() {
-        // navigate to 'set-up' page
         this.router.navigate(['/set-up']);
     }
 
-    fetchLogsAndRequests() {
+    private fetchLogsAndRequests() {
         return this.apiService.getLogsAndRequests().pipe(
             tap(res => {
                 this.logs = res.logs;
                 this.requests = res.requests;
             })
         );
+    }
+
+    public copyToClipboard(text: string) {
+        this.clipboard.copy(text);
+        this.tooltip?.show();
+
+        this.tooltipText = 'URL copied';
+        setTimeout(() => {
+            this.tooltipText = 'Click to copy';
+            this.tooltip?.hide();
+        }, 2000);
     }
 
     public acceptRequest(songId: Song['id']) {
@@ -85,5 +113,14 @@ export class EventsComponent implements OnInit {
         this.apiService.suspendUser(songId).subscribe(() => {
             this.fetchLogsAndRequests().subscribe();
         });
+    }
+
+    ngOnDestroy() {
+        if (this.intervalSubscription) {
+            this.intervalSubscription.unsubscribe();
+        }
+        if (this.startRequestingInterval) {
+            this.startRequestingInterval.unsubscribe();
+        }
     }
 }
