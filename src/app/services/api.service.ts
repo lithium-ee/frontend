@@ -60,7 +60,7 @@ export class ApiService {
             code: code,
             access_token: accessToken,
         };
-
+        console.log(accessToken, body)
         return this.http.post(
             `${environment.API_URL}/users/save-code`,
             body
