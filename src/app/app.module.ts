@@ -29,7 +29,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepFourComponent } from './set-up/steps/step-four/step-four.component';
 import { StepFiveComponent } from './set-up/steps/step-five/step-five.component';
 import { OverviewComponent } from './set-up/steps/overview/overview.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -65,7 +64,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
         BrowserAnimationsModule,
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,

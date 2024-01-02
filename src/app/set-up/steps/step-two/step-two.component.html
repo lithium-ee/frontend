@@ -1,12 +1,20 @@
 <div id="container">
     <div id="contents">
-
         <h2>Connect your spotify account</h2>
-        <h5>You will be redirected to spotifies authentication website.
-            <br>
-            Having succefully authenticated your account, you will be redirected back here.</h5>
-        
-        <app-main-button [text]="'connect'" [size]="'xl'" (click)="apiService.connectSpotify()"></app-main-button>
-        <app-secondary-button [text]="'back'" [size]="'large'" (click)="goBack()"></app-secondary-button>
+        <h5>
+            You will be redirected to spotifies authentication website.
+            <br />
+            Having succefully authenticated your account, you will be redirected
+            back here.
+        </h5>
+
+        <app-main-button
+            [text]="'connect'"
+            [size]="'xl'"
+            (click)="apiService.connectSpotify()"></app-main-button>
+        <app-secondary-button
+            [text]="'back'"
+            [size]="'large'"
+            (click)="goBack()"></app-secondary-button>
     </div>
 </div>
