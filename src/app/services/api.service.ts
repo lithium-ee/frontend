@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
-import { environment } from '../../../environment';
+import { environment } from '../../env/environment';
 import { AppService } from '../app.service';
 import {
     EventInfoDto,
@@ -60,7 +60,7 @@ export class ApiService {
             code: code,
             access_token: accessToken,
         };
-        console.log(accessToken, body)
+        console.log(accessToken, body);
         return this.http.post(
             `${environment.API_URL}/users/save-code`,
             body

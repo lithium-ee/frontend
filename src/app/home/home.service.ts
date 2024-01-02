@@ -5,7 +5,7 @@ import {
     EventInfoDto,
     ExtendedEventInfoDto,
 } from '../set-up/interfaces/event-info.dto';
-import { environment } from '../../../environment';
+import { environment } from '../../env/environment';
 
 @Injectable({
     providedIn: 'root',

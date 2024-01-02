@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { CanActivateFn, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { environment } from 'environment';
+import { environment } from 'src/env/environment';
 
 export const AuthGuard: CanActivateFn = () => {
     const token = localStorage.getItem('access_token');
